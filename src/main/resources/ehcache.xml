@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+
+	<!-- 默认缓存配置 -->
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="86400" timeToLiveSeconds="86400" overflowToDisk="true"
+		memoryStoreEvictionPolicy="LFU" />
+
+	<!-- VehicleInfo缓存配置 -->
+	<cache name="user_MenuPersion" maxElementsInMemory="200000"
+		eternal="false" timeToIdleSeconds="86400" timeToLiveSeconds="86400"
+		overflowToDisk="false" />
+
+	
+</ehcache>

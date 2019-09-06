@@ -1,5 +1,7 @@
 package com.xtsoft.kernel.sys.entity;
 
+import com.xtsoft.kernel.util.StringPool;
+
 public class RoleEntity extends DataEntity<RoleEntity> {
 
 	/**

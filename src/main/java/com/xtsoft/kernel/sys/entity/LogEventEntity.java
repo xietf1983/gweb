@@ -2,7 +2,6 @@ package com.xtsoft.kernel.sys.entity;
 
 import java.util.Date;
 
-import com.xtsoft.kernel.common.entity.AbstractEntity;
 
 public class LogEventEntity extends AbstractEntity<LogEventEntity> {
 

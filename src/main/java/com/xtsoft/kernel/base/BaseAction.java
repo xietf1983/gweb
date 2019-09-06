@@ -1,4 +1,4 @@
-BaseActionpackage com.xtsoft.kernel.base;
+package com.xtsoft.kernel.base;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.alibaba.fastjson.JSON;
-import com.xtsoft.kernel.security.shiro.realm.CustomRealm.Principal;
-import com.xtsoft.kernel.security.shiro.web.filter.authc.ShiroToken;
+import com.xtsoft.kernel.security.shiro.realm.Principal;
 
 @Controller("baseaction")
 public class BaseAction {

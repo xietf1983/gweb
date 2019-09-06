@@ -80,17 +80,17 @@ public class UserEntityServiceImpl {
 	}
 
 	public long countWithDynamicQuery(List<ConditionFilter> list) {
-		return getPersistence().countWithDynamicQuery(UserEntity.FINDWITHDYNAMICQUERY_COUNT_ + UserEntity.class.getSimpleName(), list);
+		return getPersistence().countWithDynamicQuery(UserEntity.FINDWITHDYNAMICQUERY_COUNT + UserEntity.class.getSimpleName(), list);
 	}
 
 	public List findWithDynamicQuery(List<ConditionFilter> list) {
-		return getPersistence().findWithDynamicQuery(UserEntity.FINDWITHDYNAMICQUERY_LIST_ + UserEntity.class.getSimpleName(), list);
+		return getPersistence().findWithDynamicQuery(UserEntity.FINDWITHDYNAMICQUERY_LIST + UserEntity.class.getSimpleName(), list);
 
 	}
 
 	public List findWithDynamicQuery(List<ConditionFilter> list, int start, int limit) {
 
-		return getPersistence().findWithDynamicQuery(UserEntity.FINDWITHDYNAMICQUERY_PAGELIST_ + UserEntity.class.getSimpleName(), list, start, limit);
+		return getPersistence().findWithDynamicQuery(UserEntity.FINDWITHDYNAMICQUERY_PAGELIST + UserEntity.class.getSimpleName(), list, start, limit);
 	}
 
 	public UserEntity deleteUserEntity(UserEntity entity) {

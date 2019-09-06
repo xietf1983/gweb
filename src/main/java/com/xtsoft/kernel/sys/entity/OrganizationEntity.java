@@ -3,7 +3,6 @@ package com.xtsoft.kernel.sys.entity;
 import java.util.Date;
 import java.util.List;
 
-import com.xtsoft.kernel.common.entity.TreeEntity;
 
 public class OrganizationEntity extends TreeEntity<OrganizationEntity> {
 	private String fullPath;

@@ -13,5 +13,13 @@ public abstract class AbstractEntity<T> extends BaseEntity {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
 	}
+	/**
+	 * 判断缓存是否启用
+	 * @return
+	 */
+	public boolean  getCacheEable(){
+		
+	}
+	
 
 }
