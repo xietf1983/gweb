@@ -6,10 +6,16 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xtsoft.kernel.query.ConditionFilter;
 
 public class BasePersistence<T extends BaseEntity> extends SqlSessionDaoSupport {
+	@Autowired
+	public void setSqlSessionFactory(org.apache.ibatis.session.SqlSessionFactory sqlSessionFactory) {
+		super.setSqlSessionFactory(sqlSessionFactory);
+	}
+
 	public void insert(String statement, T model) {
 		getSqlSession().insert(statement, model);
 	}
