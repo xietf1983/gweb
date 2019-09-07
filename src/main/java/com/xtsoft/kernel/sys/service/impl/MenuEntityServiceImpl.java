@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xtsoft.kernel.cache.CacheName;
+import com.xtsoft.kernel.cache.EhCacheCacheManagerUtil;
 import com.xtsoft.kernel.constant.DataBaseConstant;
 import com.xtsoft.kernel.query.ConditionFilter;
 import com.xtsoft.kernel.sys.entity.MenuEntity;
@@ -135,7 +137,10 @@ public class MenuEntityServiceImpl {
 		typeList.add("2");
 		ConditionFilter filterType = new ConditionFilter("TYPES", typeList, DataBaseConstant.MENUTYPE);
 		list.add(filterType);
-		return findWithDynamicQuery(list);
+		List<MenuEntity> listRet = findWithDynamicQuery(list);
+		//增加到缓存
+		EhCacheCacheManagerUtil.putObject(userId, CacheName.USERMENEPERSION, ArrayList.class);
+		return  listRet;
 	}
 
 	public List<MenuEntity> findWithDynamicQuery(List<ConditionFilter> list) {

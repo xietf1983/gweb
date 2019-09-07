@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xtsoft.kernel.cache.CacheName;
+import com.xtsoft.kernel.cache.EhCacheCacheManagerUtil;
 import com.xtsoft.kernel.query.ConditionFilter;
 import com.xtsoft.kernel.sys.entity.RoleEntity;
 import com.xtsoft.kernel.sys.service.persistence.RoleEntityPersistence;
@@ -53,12 +55,16 @@ public class RoleEntityServiceImpl {
 	public RoleEntity deleteRoleEntity(RoleEntity entity) {
 		getPersistence().deleteEntity(entity);
 		getPersistence().deleteRoleUserEntityList(entity.getRoleId());
+		//清理缓存  用户权限
+		
+		EhCacheCacheManagerUtil.clearcacheName(CacheName.USERMENEPERSION);
 		return entity;
 	}
 
 	public void updateSavedUserRoles(String[] userIds, String roleId) {
 		if (userIds != null && userIds.length > 0) {
 			for (String userId : userIds) {
+				EhCacheCacheManagerUtil.removeByKey(userId, CacheName.USERMENEPERSION);
 				getUserEntityPersistence().addUserRoles(userId, roleId);
 			}
 		}
@@ -67,12 +73,15 @@ public class RoleEntityServiceImpl {
 	public void removeUserRoles(String[] userIds, String roleId) {
 		if (userIds != null && userIds.length > 0) {
 			for (String userId : userIds) {
+				EhCacheCacheManagerUtil.removeByKey(userId, CacheName.USERMENEPERSION);
 				getUserEntityPersistence().removeUserRoles(userId, roleId);
 			}
 		}
 	}
 
 	public void saveRoleRoleMenuEntity(String[] menuIds, String roleId) {
+		//清理缓存  用户权限
+		EhCacheCacheManagerUtil.clearcacheName(CacheName.USERMENEPERSION);
 		getPersistence().saveRoleRoleMenuEntity(roleId, menuIds);
 	}
 

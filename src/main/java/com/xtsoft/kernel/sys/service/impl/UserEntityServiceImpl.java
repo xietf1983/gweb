@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xtsoft.kernel.cache.CacheName;
+import com.xtsoft.kernel.cache.EhCacheCacheManagerUtil;
 import com.xtsoft.kernel.constant.DataBaseConstant;
 import com.xtsoft.kernel.query.ConditionFilter;
 import com.xtsoft.kernel.sys.entity.UserEntity;
@@ -41,6 +43,8 @@ public class UserEntityServiceImpl {
 		getPersistence().removeUserOrg(userEntity.getUserId(), null);
 		getPersistence().removeUserRoles(userEntity.getUserId(), null);
 		getPersistence().removeUserGroup(userEntity.getUserId(), null);
+		//清理缓存  用户权限			
+		EhCacheCacheManagerUtil.removeByKey(userEntity.getUserId(), CacheName.USERMENEPERSION);
 		if (orgIdList != null && orgIdList.length > 0) {
 			for (String orgId : orgIdList) {
 				getPersistence().addUserOrg(userEntity.getUserId(), orgId);

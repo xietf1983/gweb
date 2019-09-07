@@ -13,6 +13,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.xtsoft.kernel.cache.CacheName;
+import com.xtsoft.kernel.cache.EhCacheCacheManagerUtil;
 import com.xtsoft.kernel.security.shiro.web.filter.authc.ShiroToken;
 import com.xtsoft.kernel.sys.entity.MenuEntity;
 import com.xtsoft.kernel.sys.service.MenuEntityServiceUtil;
@@ -33,7 +35,11 @@ public class CustomRealm extends AuthorizingRealm {
 			 * 获取菜单权限
 			 * 
 			 */
-			List<MenuEntity> permissionList = MenuEntityServiceUtil.getService().findMenuEntityButtonByUserId(userId);
+			List<MenuEntity> permissionList =(List<MenuEntity>) EhCacheCacheManagerUtil.loadCacheByKey(userId, CacheName.USERMENEPERSION, ArrayList.class);
+			if(permissionList==null){
+				permissionList = MenuEntityServiceUtil.getService().findMenuEntityButtonByUserId(userId);
+				
+			}
 			if (permissionList != null && permissionList.size() > 0) {
 				for (MenuEntity sysPermission : permissionList) {
 					// 将数据库中的权限标签 符放入集合
