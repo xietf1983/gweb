@@ -7,6 +7,9 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class UserEntity extends DataEntity<UserEntity> {
 	/**
 	 * 
@@ -40,8 +43,9 @@ public class UserEntity extends DataEntity<UserEntity> {
 		this.password = password;
 	}
 
+	@JSONField(serialize = false)
 	private String password;
-
+	@JSONField(serialize = false)
 	private String userId;
 
 	public Date getModifiedDate() {
@@ -212,25 +216,45 @@ public class UserEntity extends DataEntity<UserEntity> {
 		this.userType = userType;
 	}
 
+	@JSONField(serialize = false)
 	private Date modifiedDate;
+	@JSONField(serialize = false)
 	private int defaultUser;
+	@JSONField(serialize = false)
 	private Date passwordModifiedDate;
+	@JSONField(serialize = false)
 	private String reminderQueryQuestion;
+	@JSONField(serialize = false)
 	private String reminderQueryAnswer;
+	@JSONField(serialize = false)
 	private long graceLoginCount;
+	@JSONField(serialize = false)
 	private String screenName;//
+	@JSONField(serialize = false)
 	private String greeting;
+	@JSONField(serialize = false)
 	private String jobTitle;
+	@JSONField(serialize = false)
 	private Date loginDate;
+	@JSONField(serialize = false)
 	private String loginIP;
+	@JSONField(serialize = false)
 	private Date lastLoginDate;
+	@JSONField(serialize = false)
 	private String lastLoginIP;
+	@JSONField(serialize = false)
 	private int status;
+	@JSONField(serialize = false)
 	private String employeeNumber;
+	@JSONField(serialize = false)
 	private int male;
+	@JSONField(serialize = false)
 	private Date birthday;
+	@JSONField(serialize = false)
 	private String tel;
+	@JSONField(serialize = false)
 	private String organizationId;
+	@JSONField(serialize = false)
 	private String organizationFullName;
 
 	public String getOrganizationFullName() {
@@ -241,10 +265,13 @@ public class UserEntity extends DataEntity<UserEntity> {
 		this.organizationFullName = organizationFullName;
 	}
 
+	@JSONField(serialize = false)
 	private String description;
+	@JSONField(serialize = false)
 	private String userType;
-
+	@JSONField(serialize = false)
 	private String userTypeName;
+	@JSONField(serialize = false)
 	private String statusName;
 
 	public final String getStatusName() {
@@ -263,6 +290,7 @@ public class UserEntity extends DataEntity<UserEntity> {
 		this.userTypeName = userTypeName;
 	}
 
+	@JSONField(serialize = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date entryDate;// 入职时间
 
@@ -288,6 +316,12 @@ public class UserEntity extends DataEntity<UserEntity> {
 				return super.accept(f) && !f.getName().equals("password");
 			}
 		}).toString();
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		System.out.print(JSON.toJSONString(new UserEntity()));
+		int a = 0;
 	}
 
 }

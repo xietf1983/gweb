@@ -2,7 +2,8 @@ package com.xtsoft.kernel.aop;
 
 import java.lang.reflect.Method;
 import java.util.Date;
-import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,13 +15,15 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.xtsoft.kernel.annotation.SystemLogAnnotation;
-import com.xtsoft.kernel.base.BaseEntity;
-import com.xtsoft.kernel.query.ConditionFilter;
 import com.xtsoft.kernel.response.AjaxJsonResult;
+import com.xtsoft.kernel.security.shiro.SecurityUtilSimple;
+import com.xtsoft.kernel.security.shiro.realm.Principal;
 import com.xtsoft.kernel.sys.entity.LogEventEntity;
 import com.xtsoft.kernel.sys.service.CounterEntityServiceUtil;
 import com.xtsoft.kernel.sys.service.LogEventEntityServiceUtil;
@@ -45,7 +48,7 @@ public class SystemLogAspect {
 			LogEventEntity logEvent = null;
 			try {
 				object = ((ProceedingJoinPoint) joinPoint).proceed();
-				logEvent = getLogEvent(joinPoint);
+				logEvent = getLogEvent(joinPoint, annotation);
 				logEvent.setDescription(annotation.description());
 				long end = System.currentTimeMillis();
 				logEvent.setExeTime((end - start));
@@ -64,13 +67,14 @@ public class SystemLogAspect {
 				LogEventEntityServiceUtil.getService().getPersistence().insertEntity(logEvent);
 
 			} catch (Throwable e) {
-				logEvent = getLogEvent(joinPoint);
+				logEvent = getLogEvent(joinPoint, annotation);
 				logEvent.setDescription(annotation.description());
 				long end = System.currentTimeMillis();
 				logEvent.setExeTime((end - start));
 				logEvent.setOperTime(new Date());
 				logEvent.setSucess(0);
 				logEvent.setExcetption(e.getMessage());
+				logEvent.setId(CounterEntityServiceUtil.getService().getPersistence().increment(LogEventEntity.class.getName()) + "");
 				LogEventEntityServiceUtil.getService().getPersistence().insertEntity(logEvent);
 
 			}
@@ -92,68 +96,48 @@ public class SystemLogAspect {
 		}
 	}
 
-	public LogEventEntity getLogEvent(JoinPoint joinPoint) {
+	public LogEventEntity getLogEvent(JoinPoint joinPoint, SystemLogAnnotation annotation) {
 		String methodName = joinPoint.getSignature().getName();
 		String className = joinPoint.getTarget().getClass().getSimpleName();
 		LogEventEntity l = new LogEventEntity();
+		String ip = null;
+		Principal user = null;
+		Object[] arguments = joinPoint.getArgs();
+		try {
+			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+			ip = SecurityUtilSimple.getIpAddr(request);
+		} catch (Exception ee) {
+			ip = "";
+		}
+		try {
+			user = SecurityUtilSimple.getPrincipal();
+		} catch (Exception ee) {
+			user = null;
+		}
+		if (user != null) {
+			l.setUserAccount(user.getUsername());
+			l.setUserId(user.getId());
+		}
+		l.setUserIP(ip);
+		l.setClassName(className);
+		l.setMethods(methodName);
+		try {
+			l.setArguments(getControllerMethodDescription(arguments));
+		} catch (Exception ex) {
 
+		}
 		return l;
 	}
 
 	public String getControllerMethodDescription(Object[] arguments) throws Exception {
-		StringBuffer rs = new StringBuffer();
-		if (arguments == null) {
-			return rs.toString();
-		}
-		String className = null;
-		rs.append("[");
-		for (Object info : arguments) {
-
-			if (info == null) {
-				if (!rs.toString().equals("")) {
-					rs.append(",");
-				}
-				rs.append("{}");
-			} else {
-				className = info.getClass().getName();
-				className = className.substring(className.lastIndexOf(".") + 1);
-				if (info instanceof BaseEntity) {
-					if (!rs.toString().equals("[")) {
-						rs.append(",");
-					}
-					rs.append("{");
-					rs.append(info.toString());
-					rs.append("}");
-				} else {
-					if (info instanceof List) {
-						if (!rs.toString().equals("")) {
-							rs.append(",");
-						}
-						rs.append("{");
-						for (Object r : (List) info) {
-							int k = 0;
-							if (info instanceof ConditionFilter) {
-								if (k == 0) {
-									rs.append(info.toString());
-									k = k + 1;
-								}
-							}
-						}
-						rs.append("}");
-
-					} else {
-						if (!rs.toString().equals("")) {
-							rs.append(",");
-						}
-						rs.append("{");
-						rs.append(info.toString());
-						rs.append("}");
-					}
-				}
+		if (arguments != null) {
+			if(arguments.length==1){
+			   return JSON.toJSONString(arguments[0]);
+			}else{
+				return JSON.toJSONString(arguments);
 			}
 		}
-		rs.append("]");
-		return rs.toString();
+		return null;
 	}
 
 }

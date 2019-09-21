@@ -46,7 +46,7 @@ public class LoginAction extends BaseAction {
 
 	@RequestMapping(value = "/checkUserAccount", method = RequestMethod.POST)
 	@ResponseBody
-	@SystemLogAnnotation(module = "loginAction", methods = "checkUserAccount", description = "用户登入", encrypted = "1")
+	@SystemLogAnnotation(module = "loginAction", methods = "checkUserAccount", description = "用户登入", encrypted = "1", parameters = { "emailaddress" })
 	public AjaxJsonResult checkUserAccount(UserEntity userShort) {
 		try {
 			ConditionFilter filter = new ConditionFilter("USER", userShort.getEmailaddress(), "账号");

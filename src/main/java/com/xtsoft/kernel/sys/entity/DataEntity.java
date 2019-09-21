@@ -2,13 +2,24 @@ package com.xtsoft.kernel.sys.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
 
 public abstract class DataEntity<ID> extends AbstractEntity<ID> {
 
 	private static final long serialVersionUID = 1L;
-
-	protected String remarks; 
-
+	@JSONField(serialize = false)
+	protected String remarks;
+	@JSONField(serialize = false)
+	protected String createBy;
+	@JSONField(serialize = false)
+	protected Date createDate;
+	@JSONField(serialize = false)
+	protected String updateBy;
+	@JSONField(serialize = false)
+	protected Date updateDate;
+	@JSONField(serialize = false)
+	protected String delFlag = "0";
+	
 	public String getRemarks() {
 		return remarks;
 	}
@@ -56,15 +67,5 @@ public abstract class DataEntity<ID> extends AbstractEntity<ID> {
 	public void setDelFlag(String delFlag) {
 		this.delFlag = delFlag;
 	}
-
-	protected String createBy; 
-
-	protected Date createDate;
-
-	protected String updateBy; 
-
-	protected Date updateDate; 
-
-	protected String delFlag = "0"; 
 
 }

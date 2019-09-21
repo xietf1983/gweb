@@ -17,6 +17,6 @@ public class BaseEntity implements Serializable {
 	
 	public static final String DELETEENTITY = "_delete";
 	
-	public static final String FINDPRIMARYKEY= "_FINDERBY_ONE";
+	public static final String FINDPRIMARYKEY= "_finderOne";
 	
 }
