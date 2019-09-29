@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link type="text/css" rel="stylesheet"
+	href="ui/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="js/toastr/toastr.min.css">
+<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+<link href="ui/easyui/themes/gray/easyui.css" rel="stylesheet">
+<!-- Favicon -->
+
+<link rel="shortcut icon" href="assets/img/favicon.ico">
+</head>
+
+<body class="external-page">
+
+	<!-- Start: Main -->
+	<div id="main" class="animated fadeIn">
+		<!-- begin canvas animation bg -->
+		<div id="canvas-wrapper">
+			<canvas id="demo-canvas"></canvas>
+		</div>
+		<div class="login_box" id="login_box" style='display: none;'>
+			<form action="dashboard.htm" method="post" id="login_form">
+				<div class="top_b center-block">Sign in to Gebo Admin</div>
+				<div style="margin-left: 20px;">
+					<div class="form-group"></div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="fa fa-envelope-o fa-fw"></i></span><input type="text"
+								name="username" id="username" class="form-control"
+								placeholder="用户名" style="width: 280px; height: 28px">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span><input
+								type="password" class="form-control" id="password"
+								name="password" placeholder="密码"
+								style="width: 280px;; height: 28px">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="pull-right" style="padding-right: 55px;">
+							<button type="button" class="btn btn-primary" onClick="aa()">
+								Login <i class="fa fa-chevron-circle-right"></i>
+							</button>
+						</div>
+
+
+						<br> <br>
+					</div>
+			</form>
+		</div>
+
+
+	</div>
+	<script src="ui/easyui/jquery.min.js"></script>
+	<script src="ui/easyui/jquery.easyui.min.js"></script>
+	<script src="ui/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script src="js/jquery.md5.js"></script>
+	<script src="js/canvasbg/canvasbg.js"></script>
+	<script src="js/toastr/toastr.js"></script>
+	<!-- Page Javascript -->
+	<script type="text/javascript">
+		window.onload = function() {
+			if (window.parent.window != window) {
+				window.top.location = "/login.html";
+			}
+		}
+		jQuery(document).ready(function() {
+			var width = window.innerWidth;
+			var height = window.innerHeight;
+			if (width == undefined) {
+				var B = document.body, D = document.documentElement;
+				height = Math.min(D.clientHeight, B.clientHeight);
+				width = Math.min(D.clientWidth, B.clientWidth);
+
+			}
+			var yy = (height - 200) / 2
+
+			$('.login_box').css({
+				marginTop : yy,
+				display : 'block'
+			});
+			try {
+				CanvasBG.init({
+					Loc : {
+						x : width / 2,
+						y : height / 3.3
+					},
+				});
+			} catch (ex) {
+
+			}
+
+		});
+
+		function notify(message, position, timeout, theme, closable) {
+			toastr.options = {
+				"closeButton" : true,
+				"debug" : false,
+				"positionClass" : "toast-top-right",
+				"showDuration" : "300",
+				"hideDuration" : "1000",
+				"timeOut" : "5000",
+				"extendedTimeOut" : "1000",
+				"showEasing" : "swing",
+				"hideEasing" : "linear",
+				"showMethod" : "fadeIn",
+				"hideMethod" : "fadeOut"
+			}
+			toastr.info(message, toastr.options);
+		}
+		function aa() {
+			var username = $("#username").val();
+			var password = $("#password").val();
+			var data = {
+				password : password,
+				emailaddress : username
+			};
+
+			$.post("checkUserAccount.shtml", data, function(result) {
+				if (result && result.result == 1) {
+					window.location.href = 'pages/index.html';
+				} else {
+					//notify(result.message);
+					$.messager.show({
+						title : '提示信息',
+						msg : result.message,
+						timeout : 2000,
+						height : 100,
+						showType : 'slide'
+					});
+				}
+			}, "json");
+
+		}
+	</script>
+
+</body>
+
+</html>

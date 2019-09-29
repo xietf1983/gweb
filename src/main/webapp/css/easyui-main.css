@@ -1,0 +1,259 @@
+/*清零样式*/
+html,body{
+    height: 100%;
+    font-size: 12px;
+}
+html.panel-fit{
+	overflow-x:auto;
+}
+body{
+	min-width:1000px;
+}
+body,p,input,ul,ol{
+	margin:0;
+	padding:0;
+}
+p{
+	font-size:12px;
+}
+ul,ol{
+    list-style: none;
+}
+input,img{
+    vertical-align: middle;
+}
+a{
+    text-decoration: none;
+}
+.clearfix:after{
+    display: block;
+    content: '';
+    clear: both;
+    height: 0;
+}
+/*头部*/
+.layout-panel{
+    overflow: visible;
+}
+.headerBox{
+    background: #2D4F99 no-repeat left center;
+    padding-left:285px;
+}
+
+/*头部列表*/
+
+.header-nav-list{
+    font-size: 0;
+    background: #2D4F99;
+}
+.header-nav-list > li{
+    display: inline-block;
+    border-left: 1px solid #1F3F8A;
+    padding: 0 15px;
+    cursor: pointer;
+    vertical-align:middle;
+}
+.header-nav-list > li:hover,
+.header-nav-list > li.active{
+    background: #203f8b;
+}
+.header-nav-list .help-text{
+	display:block;
+	font-size:12px;
+	height: 50px;
+    line-height: 50px;
+    line-height: 52px\9;
+	color: #CDCBCC;
+	padding:0 15px;
+}
+.nav-item{
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    line-height: 52px\9;
+}
+.nav-item-text{
+    font-size: 12px;
+    color: #CDCBCC;
+}
+.iconBox .nav-item-text{
+    margin-left: 20px;
+}
+
+/*左边导航*/
+
+.west{
+    width: 180px;
+    height: 100%;
+    position: relative;
+}
+.menuBox{
+    height: 100%;
+    overflow: hidden;
+}
+.menu-header{
+    height: 34px;
+    position: relative;
+    background: #38424E;
+    cursor: pointer;
+}
+.accordionBox{
+    background:#293038;
+    border: none;
+    *border-width:0 0 0 0;
+}
+.panel-body .accordion,
+.accordion-body{
+    background:#293038;
+    border: none;
+    *border-width:0 0 0 0;
+}
+.accordion .accordion-header{
+	
+}
+
+.panel-body.accordion-body{
+	 scrollbar-arrow-color: #010100;  /*图6,三角箭头的颜色*/
+     scrollbar-face-color: #1c2229;  /*图5,立体滚动条的颜色*/
+     scrollbar-3dlight-color: #666;  /*图1,立体滚动条亮边的颜色*/
+     scrollbar-highlight-color: #37434e;  /*图2,滚动条空白部分的颜色*/
+     scrollbar-shadow-color: #37434e;  /*图3,立体滚动条阴影的颜色*/
+     scrollbar-darkshadow-color: #37434e;  /*图4,立体滚动条强阴影的颜色*/
+     scrollbar-track-color: #37434e;  /*图7,立体滚动条背景颜色*/
+
+     scrollbar-base-color:#1c2229;  /*滚动条的基本颜色*/
+}
+
+.menuBox .panel-tool{
+    display: none;
+}
+.menuBox .panel-header{
+    background: #23282E;
+    height: 34px;
+    padding: 0;
+    border: none;
+    filter:none;
+}
+.menuBox .panel-header:hover{
+    background: #2E4E99;
+}
+.menuBox .panel-header .panel-icon{
+    left: 17px;
+}
+.menuBox .panel-title{
+    height: 34px;
+    line-height: 34px;
+    line-height:36px\9;
+    padding-left: 40px;
+    color: #fff;
+}
+.menuBox .menu-navTwo-item{
+    height: 40px;
+    line-height: 40px;
+    line-height: 42px\9;
+    font-size: 0;
+    padding: 0;
+    position: relative;
+    background:#293038;
+    cursor: pointer;
+}
+.menu-navTwo li.active .menu-navTwo-item,
+.menu-navTwo-item:hover{
+    background:#2E4E99;
+}
+.menu-navTwo-text{
+    font-size: 12px;
+    margin-left: 50px;
+    color: #fff;
+}
+.west-collapse .menu-navTwo-text,
+.west-collapse .panel-title{
+    display: none;
+}
+
+
+.navTwo{
+    background:#293038;
+}
+
+
+/*左边菜单图标样式*/
+.icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    margin: -8px 0 0 0;
+}
+.accordionBox .icon{
+    left: 17px;
+}
+.icon-triangle{
+    background: url("../img/triangle2.png") center no-repeat;
+}
+.icon-sss{
+    background: url("../img/kakou.png") center no-repeat;
+}
+.icon-menu{
+    background: url("../img/expand.png") center no-repeat;
+    left: 50%;
+    margin-left: -8px;
+}
+.west-collapse .icon-menu{
+    background: url("../img/collapse.png") center no-repeat;
+}
+.accordion-header-selected .icon-triangle{
+    background: url("../img/triangle.png") center no-repeat;
+}
+
+.icon-work{
+    background: url("../img/work.png") center no-repeat;
+}
+
+/*提示信息*/
+
+.tips{
+    display: inline-block;
+    padding:0 15px;
+    position: absolute;
+    background: #293038;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    left: 65px;
+    white-space:nowrap;
+}
+.tips:before{
+    position: absolute;
+    content: '';
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #293038 ;
+    top:10px;
+    left: -8px;
+}
+/*加载中。。。*/
+.loading{
+	height:100%;
+	width:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	background:url('../img/blue-loading.gif') center no-repeat;
+	background-color:#fff;
+    z-index:100;
+    display:none;
+}
+.dialog-button { 
+	padding: 5px; text-align: center; 
+}
+.l-btn-focus {
+ 
+}
+
+
+
+
+

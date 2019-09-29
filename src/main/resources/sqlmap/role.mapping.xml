@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xtsoft.kernel.sys.entity.RoleEntity">
+	<insert id="RoleEntity_insert" parameterType="com.xtsoft.kernel.sys.entity.RoleEntity">
+		insert into role_
+		(roleId,name,description,createBy,createDate) values
+		(#{roleId,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},#{createDate,jdbcType=DATE})
+	</insert>
+	<select id="findWithDynamicQuery_List_RoleEntity" parameterType="java.util.HashMap"
+		resultType="com.xtsoft.kernel.sys.entity.RoleEntity">
+		SELECT roleId,name,description,createDate,createBy
+		FROM
+		role_ w
+	</select>
+
+	<delete id="RoleEntity_delete" parameterType="com.xtsoft.kernel.sys.entity.RoleEntity">
+		delete
+		role_
+		where
+		roleId=#{roleId,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="RoleMenuPK_delete" parameterType="com.xtsoft.kernel.sys.entity.RoleMenuPK">
+		delete
+		ROLE_MENU
+		<where>
+			<if test="roleId != null">
+				(ROLEID =#{roleId})
+			</if>
+			<if test="menuId != null">
+				AND MENUID =#{menuId}
+			</if>
+		</where>
+	</delete>
+	<insert id="RoleMenuPK_insert" parameterType="com.xtsoft.kernel.sys.entity.RoleMenuPK">
+		insert into
+		ROLE_MENU
+		(ROLEID,MENUID) values
+		(#{roleId,jdbcType=VARCHAR},#{menuId,jdbcType=VARCHAR})
+	</insert>
+</mapper>

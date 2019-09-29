@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GB18030">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<link href="../ui/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<style>
+.caret {
+	border-top: 4px solid #fff;
+}
+</style>
+<script src="../ui/jquery/jquery.min.js"></script>
+
+<script src="../ui/bootstrap/js/bootstrap.min.js"></script>
+<script src="index.js"></script>
+<script src="../js/data.js"></script>
+<!--[if lte IE 9]>
+<script src="../js/respond.min.js"></script>
+<script src="../js/html5.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+	<div id="top-nav">
+		<div class="header-left">
+			<img src="../images/logo.png" alt="" />
+			<div class="pull-right">
+				<span class="fa fa-dedent" id="menuToggle" onclick="menucollapse();"
+					style="color: #ffffff;"></span>
+			</div>
+		</div>
+		<div class="header-right">
+			<div class="btn-group pull-right">
+				<ul
+					style="margin-bottom: 0; list-style: none; padding: 2px 4px; color: #fff">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						style="text-decoration: none;" data-toggle="dropdown"><img
+							src="../images/user_avatar.png" alt="" class="user_avatar" /><span
+							style="color: #fff; padding-left: 4px">Johny Smith</span> <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" class="main-link"><i class="fa fa-edit"></i><span>&nbsp;&nbsp;我的信息</span></a></li>
+							<li><a href="#" class="main-link"><i class="fa fa-cog"></i><span>&nbsp;&nbsp;系统设置</span></a></li>
+							<li class="divider"></li>
+							<li><a href="#" class="main-link"><i
+									class="fa fa-sign-out"></i><span>&nbsp;&nbsp;注销</span></a></li>
+							<li><a href="#" class="main-link"><i class="fa fa-lock"></i><span>&nbsp;&nbsp;&nbsp;锁屏</span></a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<!--top-nav-->
+	<div class="mainwrapper">
+		<div class="leftpanel">
+			<ul class="nav nav-pills nav-stacked" id="leftpanel-nal">
+
+
+			</ul>
+		</div>
+		<!-- leftpanel -->
+
+		<div class="mainpanel" style="height: 100%">
+			<div class="pageheader">
+				<div class="media-body">
+					<ul class="breadcrumb">
+						<li><i class="fa  fa-home" style="color: #66CD00"></i><span>工作台</span></li>
+
+						<li id="crenntbreadcrumb"></li>
+					</ul>
+				</div>
+
+			</div>
+			<!-- pageheader -->
+
+			<div class="contentpanel" style="height: 100%">
+				<iframe id="iframe-center" frameBorder="0" src="right.jsp"
+					style="WIDTH: 100%; Z-INDEX: 100;"></iframe>
+			</div>
+			<!-- contentpanel -->
+		</div>
+		<!-- mainpanel -->
+	</div>
+	<!-- mainwrapper -->
+
+</body>
+</html>

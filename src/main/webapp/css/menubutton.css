@@ -1,0 +1,21 @@
+.l-btn-selected, .l-btn-selected:hover {
+	background: #2D4F99;
+	filter: none;
+}
+
+.l-btn:hover {
+	background: #2D4F99;
+	color: #000000;
+	border: 1px solid #2D4F99;
+	filter: none;
+}
+
+.l-btn-plain-selected, .l-btn-plain-selected:hover {
+	background: #2D4F99;
+}
+
+.m-btn-plain-active, .s-btn-plain-active {
+	border-color: #2D4F99;
+	background-color: #2D4F99;
+	color: #000000;
+}

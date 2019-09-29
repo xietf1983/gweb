@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xtsoft.kernel.sys.entity.MenuEntity">
+	<select id="findWithDynamicQuery_List_MenuEntity" parameterType="java.util.HashMap"
+		resultType="com.xtsoft.kernel.sys.entity.MenuEntity">
+		SELECT ID id ,PARENT parentId,ICON menuIcon,TARGETURL url ,TYPE type,TEXT name,
+		SORTID sort,DESCRIPTION remarks , CODE ,ISSHOW ,
+		(select count(*) from MENU_ s
+        WHERE s.PARENT=w.id and s.isshow=1 ) as hasChildren
+		,PERMISSIONS 
+		FROM MENU_ w
+		<where>
+		<if test="TYPES != null and TYPES.size()!=0 ">
+			 TYPE in 
+			<foreach collection="TYPES" item="item" index="index"
+				open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
+			<if test="PARENTID != null">
+				AND (PARENT =#{PARENTID})
+			</if>
+			<if test="USERID != null">
+				AND ID IN (SELECT MENUID FROM role_menu WHERE ROLEID IN (SELECT ROLEID FROM users_roles WHERE USERID =#{USERID})) 
+			</if>
+			
+			<if test="ROLEID != null">
+			   AND ID IN (SELECT MENUID FROM role_menu WHERE ROLEID  =#{ROLEID}) 
+			</if>
+		</where>
+	</select>
+
+
+</mapper>

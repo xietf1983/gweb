@@ -1,0 +1,173 @@
+/*****¹«ÓÃÍ¼±ê*****/
+
+.icon-utils-s-group-add {
+	background: url('../images/icons/group-add.png') no-repeat center center;
+}
+
+.icon-utils-s-group-service {
+	background: url('../images/icons/service.gif') no-repeat center center;
+}
+.icon-utils-s-users-service {
+	background: url('../images/icons/info-edit.gif') no-repeat center center;
+}
+
+
+
+.icon-utils-s-add {
+	background: url('../images/icons/add.gif') no-repeat center center;
+}
+
+.icon-utils-s-confirm {
+	background: url('../images/icons/computer-link.png' ) no-repeat center
+		center;
+}
+
+.icon-utils-s-go {
+	background: url('../images/icons/computer-go.png' ) no-repeat center
+		center;
+}
+
+.icon-utils-s-edit {
+	background: url('../images/icons/edit.gif' ) no-repeat center center;
+}
+
+.icon-utils-s-excel {
+	background: url('../images/icons/page-excel.png') no-repeat center
+		center;
+}
+
+.icon-utils-s-data {
+	background: url('../images/icons/page-white_database.png') no-repeat
+		center center;
+}
+
+.icon-utils-s-search {
+	background: url(' ../images/icons/search.png' ) no-repeat center center;
+}
+
+.icon-utils-s-close {
+	background: url('../images/icons/cross.gif' ) no-repeat center center;
+}
+
+.icon-utils-s-delete {
+	background: url( ../images/icons/delete.gif ) no-repeat center center;
+}
+
+.icon-utils-s-delete-other {
+	background: url( ../images/icons/deletebukong.gif ) no-repeat center center;
+}
+.icon-utils-s-delete-all{
+	background: url( ../images/icons/cancel.png ) no-repeat center center;
+}
+
+
+.icon-utils-s-release {
+	background: url('../images/icons/folder_go.png' ) no-repeat center
+		center;
+}
+
+.icon-system-view {
+	background: url('../images/icons/application_go.png ' ) no-repeat center
+		center;
+}
+
+.icon-system-refresh {
+	background: url(' ../images/icons/refresh.gif' ) no-repeat center center;
+}
+
+.icon-style-tree {
+	background: url('../images/icons/expand-all.gif' ) no-repeat center
+		center;
+}
+
+.icon-style-tab {
+	background: url('../images/icons/collapse-all.gif' ) no-repeat center
+		center;
+}
+
+.icon-utils-message {
+	background: url('../images/icons/msg.gif' ) no-repeat center center;
+}
+
+.icon-utils-newMsg {
+	background: url('../images/hot.gif' ) no-repeat center center;
+}
+
+.icon-expand-all {
+	background: url('../images/icons/expand-all.gif' ) no-repeat center
+		center;
+}
+
+.icon-collapse-all {
+	background: url('../images/icons/collapse-all.gif' ) no-repeat center
+		center;
+}
+
+.icon-circle-save {
+	background: url('../images/icons/save.gif' ) no-repeat center center;
+}
+
+.icon-circle-colse {
+	background: url('../images/icons/pause.gif') no-repeat center center;
+}
+
+.icon-circle-selectall {
+	background: url('../images/icons/selectall.gif') no-repeat center center;
+}
+
+.icon-circle-dsselectall {
+	background: url('../images/icons/dsselectal.gif') no-repeat center
+		center;
+}
+
+.icon-circle-start {
+	background: url('../images/icons/start.gif') no-repeat center center;
+}
+
+.icon-circle-stop {
+	background: url('../images/icons/stop.gif') no-repeat center center;
+}
+/*****************/
+.icon-menu-main{
+	background-image: url("../images/icons/home.gif");
+}
+
+.icon-menubutton-user{
+	background-image: url("../images/icons/user.gif");
+}
+.icon-menubutton-password{
+	background-image: url("../images/icons/lock.gif");
+}
+.icon-menubutton-config{
+	background-image: url("../images/icons/cog.png");
+}
+.icon-menubutton-exit{
+	background-image: url("../images/icons/pause.gif");
+}
+.icon-utils-s-setting{
+	background-image: url("../images/icons/cog_edit.png");
+}
+
+.icon-utils-s-up{
+	background-image: url("../images/icons/inherited.gif");
+}
+.icon-utils-s-down{
+	background-image: url("../images/icons/inherited.png");
+}
+
+.icon-utils-turnOff{
+	background-image: url("../images/icons/turnOff.png");
+}
+
+.icon-utils-turnOff{
+	background-image: url("../images/icons/turnOff.png");
+}
+.icon-utils-turnOn{
+	background-image: url("../images/icons/turnOn.png");
+}
+
+
+
+
+
+
