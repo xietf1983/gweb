@@ -46,6 +46,12 @@ public class SystemLogAspect {
 		if (annotation != null) {
 			long start = System.currentTimeMillis();
 			LogEventEntity logEvent = null;
+			Principal user = null;
+			try {
+				user = SecurityUtilSimple.getPrincipal();
+			} catch (Exception ee) {
+				user = null;
+			}
 			try {
 				object = ((ProceedingJoinPoint) joinPoint).proceed();
 				logEvent = getLogEvent(joinPoint, annotation);
@@ -55,6 +61,10 @@ public class SystemLogAspect {
 				logEvent.setSucess(1);
 				logEvent.setOperTime(new Date());
 				logEvent.setId(CounterEntityServiceUtil.getService().getPersistence().increment(LogEventEntity.class.getName()) + "");
+				if (user != null && logEvent.getUserId() == null) {
+					logEvent.setUserId(user.getId());
+					logEvent.setUserAccount(user.getUsername());
+				}
 				if (object != null) {
 					if (object instanceof AjaxJsonResult) {
 						SimplePropertyPreFilter filter = new SimplePropertyPreFilter("result", "message");
