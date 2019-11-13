@@ -83,7 +83,7 @@ public class MenuEntityServiceImpl {
 		return findWithDynamicQuery(list);
 	}
 
-	public List<MenuEntity> findMenuEntityByUserIdAndParentIdTree(String userId, String parentId) {
+	public List<MenuEntity> findMenuEntityByUserIdAndParentIdTree(String userId, String parentId, List<String> typeList) {
 		List<ConditionFilter> list = new ArrayList();
 		if (userId != null && !userId.equals("")) {
 			ConditionFilter filter = new ConditionFilter("USERID", userId, DataBaseConstant.USERID);
@@ -93,18 +93,20 @@ public class MenuEntityServiceImpl {
 			ConditionFilter filter = new ConditionFilter("PARENTID", parentId, DataBaseConstant.PARENTID);
 			list.add(filter);
 		}
-		List<String> typeList = new ArrayList<String>();
-		typeList.add("1");
-		typeList.add("2");
-		ConditionFilter filter = new ConditionFilter("TYPES", typeList, DataBaseConstant.MENUTYPE);
-		list.add(filter);
+		// List<String> typeList = new ArrayList<String>();
+		// typeList.add("1");
+		// typeList.add("2");
+		if (typeList != null && typeList.size() > 0) {
+			ConditionFilter filter = new ConditionFilter("TYPES", typeList, DataBaseConstant.MENUTYPE);
+			list.add(filter);
+		}
 		List<MenuEntity> menuList = findWithDynamicQuery(list);
 		if (menuList != null && menuList.size() > 0) {
 			for (MenuEntity r : menuList) {
 				if (r.getType() != null && r.getType().equals(DataBaseConstant.MENUTYPE_1)) {
 					if (r.isHasChildren()) {
 
-						r.setMenuItemList(findMenuEntityByUserIdAndParentIdTree(userId, r.getId()));
+						r.setMenuItemList(findMenuEntityByUserIdAndParentIdTree(userId, r.getId(),typeList));
 					}
 				}
 			}
@@ -138,9 +140,9 @@ public class MenuEntityServiceImpl {
 		ConditionFilter filterType = new ConditionFilter("TYPES", typeList, DataBaseConstant.MENUTYPE);
 		list.add(filterType);
 		List<MenuEntity> listRet = findWithDynamicQuery(list);
-		//增加到缓存
+		// 增加到缓存
 		EhCacheCacheManagerUtil.putObject(userId, CacheName.USERMENEPERSION, ArrayList.class);
-		return  listRet;
+		return listRet;
 	}
 
 	public List<MenuEntity> findWithDynamicQuery(List<ConditionFilter> list) {

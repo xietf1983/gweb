@@ -114,17 +114,16 @@ public class LoginAction extends BaseAction {
 					userName = principal.getRealname();
 				}
 				result.getExtend().put(WebConstant.WELCOME, userName);
-
-				List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, DataBaseConstant.ROOTID);
-				// result =
-				// AjaxJsonResult.buildResultSuccess(MessageConstant.SUECESS);
+				List<String> typeList = new ArrayList();
+				typeList.add("1");
+				List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, DataBaseConstant.ROOTID, typeList);
 				result.getExtend().put(WebConstant.MENU, menuList);
 
 				// 获取默认首页
 				MenuEntity menu = MenuEntityServiceUtil.getService().findHomeMenuEntityByUserId(id);
 				if (menu == null) {
 					menu = new MenuEntity();
-					menu.setId("default");
+					menu.setId("0");
 					menu.setUrl(WebConstant.WELCOME_PAGE_URL);
 					menu.setName(WebConstant.WELCOME_PAGE_NAME);
 					menu.setIsshow((short) 1);
@@ -154,10 +153,33 @@ public class LoginAction extends BaseAction {
 		if (org.apache.shiro.SecurityUtils.getSubject().isAuthenticated()) {
 			Principal principal = SecurityUtilSimple.getPrincipal();
 			String id = principal.getId();
-			List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, parentId);
+			List<String> typeList = new ArrayList();
+			typeList.add("1");
+			List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, parentId,typeList);
 			result = AjaxJsonResult.buildResultSuccess(MessageConstant.SUECESS);
 
 			result.getExtend().put(WebConstant.MENU, menuList);
+
+		} else {
+			AjaxJsonResult.buildResultFail(MessageConstant.AUTHEN_ERROR);
+		}
+		return result;
+
+	}
+
+	/**
+	 * 获取当前人的菜单列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/getSidebarMenu", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxJsonResult getSidebarMenu() {
+		AjaxJsonResult result = null;
+		StringBuffer buffer = new StringBuffer();
+		if (org.apache.shiro.SecurityUtils.getSubject().isAuthenticated()) {
+			Principal principal = SecurityUtilSimple.getPrincipal();
+			String id = principal.getId();
 
 		} else {
 			AjaxJsonResult.buildResultFail(MessageConstant.AUTHEN_ERROR);

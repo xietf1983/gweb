@@ -4,6 +4,7 @@ import org.springframework.cache.CacheManager;
 
 public class EhCacheCacheManagerUtil {
 	private static CacheManager cacheManager;
+	
 
 	public static CacheManager getCacheManager() {
 		return cacheManager;
