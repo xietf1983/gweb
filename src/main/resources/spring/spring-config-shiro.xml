@@ -22,7 +22,7 @@
 	<bean id="customRealm" class="com.xtsoft.kernel.security.shiro.realm.CustomRealm">
 		<property name="authorizationCacheName" value="shiroCache"></property>
 	</bean>
-	
+
 
 
 	<!-- 会话管理器 -->
@@ -38,7 +38,7 @@
 
 		<property name="sessionValidationScheduler" ref="sessionValidationScheduler" />
 
-		<!--  <property name="sessionDAO" ref="customRedisSessionDao" />-->
+		<!-- <property name="sessionDAO" ref="customRedisSessionDao" /> -->
 
 		<property name="sessionIdCookieEnabled" value="true" />
 
@@ -62,13 +62,14 @@
 		<property name="sessionManager" ref="sessionManager" />
 
 		<property name="cacheManager" ref="shiroCacheManager" />
-	
+
 
 	</bean>
 	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml" />
+		<property name="cacheManager" ref="ehCacheManager" />
 	</bean>
 
+	
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />

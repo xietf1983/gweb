@@ -63,7 +63,7 @@ public class SystemLogAspect {
 				logEvent.setId(CounterEntityServiceUtil.getService().getPersistence().increment(LogEventEntity.class.getName()) + "");
 				if (user != null && logEvent.getUserId() == null) {
 					logEvent.setUserId(user.getId());
-					logEvent.setUserAccount(user.getUsername());
+					logEvent.setUserAccount(user.getRealname());
 				}
 				if (object != null) {
 					if (object instanceof AjaxJsonResult) {
@@ -125,7 +125,7 @@ public class SystemLogAspect {
 			user = null;
 		}
 		if (user != null) {
-			l.setUserAccount(user.getUsername());
+			l.setUserAccount(user.getRealname());
 			l.setUserId(user.getId());
 		}
 		l.setUserIP(ip);

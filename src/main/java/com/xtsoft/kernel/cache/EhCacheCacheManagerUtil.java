@@ -39,7 +39,7 @@ public class EhCacheCacheManagerUtil {
 		keyBuffer.append(cacheName);
 		keyBuffer.append("-");
 		keyBuffer.append(key);
-		return getCacheManager().getCache(cacheName).get(key, obj);
+		return getCacheManager().getCache(cacheName).get(keyBuffer.toString(), obj);
 	}
 
 	

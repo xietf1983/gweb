@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xtsoft.police.entity.PlaceEntity">
+	<insert id="PlaceEntity_insert" parameterType="com.xtsoft.police.entity.PlaceEntity">
+		insert into
+		LOGEVENT
+		(ID,USERID,USERACCOUNT,METHODS,OPERTIME,USERIP,CLASSNAME,EXCETPTION,DESCRIPTION,EXETIME,arguments,RETURNOBJECT,SUCESS)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{userId,jdbcType=NUMERIC},
+		#{userAccount,jdbcType=VARCHAR},
+		#{methods,jdbcType=VARCHAR},
+		#{operTime,jdbcType=TIMESTAMP},
+		#{userIP,jdbcType=VARCHAR},
+		#{className,jdbcType=VARCHAR},
+		#{excetption,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{exeTime,jdbcType=NUMERIC},
+		#{arguments,jdbcType=VARCHAR},
+		#{returnObject,jdbcType=VARCHAR},
+		#{sucess,jdbcType=NUMERIC}
+		)
+	</insert>
+
+
+
+	<select id="findWithDynamicQuery_PageList_PlaceEntity"
+		parameterType="java.util.HashMap" resultType="com.xtsoft.police.entity.PlaceEntity">
+		SELECT T.*
+		from (SELECT
+		ID ,NAME ,
+		LONGITUDE ,
+		LATITUDE ,
+		PLACETYPE ,
+		EQPID,
+		CODE,
+		CROSSINGTYPE ,
+		INSTALLATION ,
+		CREATEDATE,
+		STATUS,
+		DELFLAG,to_char(CREATEDATE,'yyyy-mm-dd')CREATEDATESTR,
+		ROWNUM
+		RN
+		FROM PLACEENTITY w
+		<where>
+			<if test="ORGANIZATIONID != null">
+				AND EQPID IN (
+				select v.ORGANIZATIONID from
+				ORGANIZATION_ v
+				start with ORGANIZATIONID =#{ORGANIZATIONID}
+				connect
+				by prior
+				PARENTORGANIZATIONID=ORGANIZATIONID
+				)
+			</if>
+			<if test="NAME != null">
+				(NAME LIKE '%' || #{KEYNAME} || '%' OR CODE LIKE
+				%' ||
+				#{KEYNAME} || '%' )
+			</if>
+
+			<if test="TYPE != null">
+				PLACETYPE=#{TYPE}
+			</if>
+
+			<if test="VEHICLECAPTURE != null">
+				and (SELECT COUNT(*) FROM FROM PLACE_DEVICE WHERE
+				DEVICEID IN (SELECT
+				ID FROM DEVICEENTITY WHERE VEHICLECAPTURE =1 ))
+			</if>
+
+			<if test="FACESNAPPING != null">
+				and (SELECT COUNT(*) FROM FROM PLACE_DEVICE WHERE
+				DEVICEID IN (SELECT
+				ID FROM DEVICEENTITY WHERE FACESNAPPING =1 ))
+			</if>
+
+			<if test="endRow != null">
+				<![CDATA[ and ROWNUM <= #{endRow} ]]>
+			</if>
+		</where>
+		)T
+		<where>
+			<if test="startRow != null">
+				<![CDATA[  RN >= #{startRow} ]]>
+			</if>
+		</where>
+	</select>
+
+
+	<select id="findWithDynamicQuery_Count_PlaceEntity"
+		parameterType="java.util.HashMap" resultType="java.lang.Long">
+		SELECT count(*) as COUNTVALUE
+		FROM PLACEENTITY w
+		<where>
+			<if test="ORGANIZATIONID != null">
+				AND EQPID IN (
+				select v.ORGANIZATIONID from
+				ORGANIZATION_ v
+				start with ORGANIZATIONID =#{ORGANIZATIONID}
+				connect
+				by prior
+				PARENTORGANIZATIONID=ORGANIZATIONID
+				)
+			</if>
+			<if test="NAME != null">
+				(NAME LIKE '%' || #{KEYNAME} || '%' OR CODE LIKE
+				%' ||
+				#{KEYNAME} || '%' )
+			</if>
+
+			<if test="TYPE != null">
+				PLACETYPE=#{TYPE}
+			</if>
+
+			<if test="VEHICLECAPTURE != null">
+				and (SELECT COUNT(*) FROM FROM PLACE_DEVICE WHERE
+				DEVICEID IN (SELECT
+				ID FROM DEVICEENTITY WHERE VEHICLECAPTURE =1 ))
+			</if>
+
+			<if test="FACESNAPPING != null">
+				and (SELECT COUNT(*) FROM FROM PLACE_DEVICE WHERE
+				DEVICEID IN (SELECT
+				ID FROM DEVICEENTITY WHERE FACESNAPPING =1 ))
+			</if>
+
+		</where>
+	</select>
+
+</mapper>

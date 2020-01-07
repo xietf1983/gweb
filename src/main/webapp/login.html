@@ -4,20 +4,20 @@
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
 <link type="text/css" rel="stylesheet"
 	href="ui/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/login.css">
-<link rel="stylesheet" type="text/css" href="js/toastr/toastr.min.css">
-<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet"
+	href="fonts/css/font-awesome.min.css">
 <link href="ui/easyui/themes/gray/easyui.css" rel="stylesheet">
 <!-- Favicon -->
-
+<link href="css/index.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="assets/img/favicon.ico">
 </head>
 
 <body class="external-page">
-
-	<!-- Start: Main -->
+	
 	<div id="main" class="animated fadeIn">
 		<!-- begin canvas animation bg -->
 		<div id="canvas-wrapper">
@@ -61,6 +61,7 @@
 	</div>
 	<script src="ui/easyui/jquery.min.js"></script>
 	<script src="ui/easyui/jquery.easyui.min.js"></script>
+	<script src="js/easyuiLocal.js"></script>
 	<script src="ui/easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script src="js/jquery.md5.js"></script>
 	<script src="js/canvasbg/canvasbg.js"></script>
@@ -117,6 +118,10 @@
 			toastr.info(message, toastr.options);
 		}
 		function aa() {
+			$.loading({
+				msg : "正在加载...",
+				topMost : true
+			});
 			var username = $("#username").val();
 			var password = $("#password").val();
 			var data = {
@@ -125,8 +130,9 @@
 			};
 
 			$.post("checkUserAccount.shtml", data, function(result) {
+				$.removeload(true);
 				if (result && result.result == 1) {
-					window.location.href = 'pages/index.html';
+					window.location.href = 'pages/main/index.html';
 				} else {
 					//notify(result.message);
 					$.messager.show({

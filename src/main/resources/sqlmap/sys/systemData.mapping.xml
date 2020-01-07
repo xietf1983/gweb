@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xtsoft.kernel.sys.entity.SystemDataEntity">
+
+	<select id="findWithDynamicQuery_List_SystemDataEntity"
+		parameterType="java.util.HashMap" resultType="com.xtsoft.kernel.sys.entity.SystemDataEntity">
+		SELECT ID ,DATACODE ,NAME , VALUE ,SORTID ,COMMENTS as description , STATUS
+		,CREATEDATE , USERID,ICON iconCls   from SYSTEMDATA
+		<where>
+			<if test="DATACODE != null">
+				(dataCode =#{DATACODE})
+			</if>
+			
+		</where>
+		 order by sortId
+	</select>
+	
+	<select id="SystemDataEntity_finderOne" parameterType="com.xtsoft.kernel.sys.entity.SystemDataEntity"
+		resultType="com.xtsoft.kernel.sys.entity.SystemDataEntity">
+		SELECT ID ,DATACODE ,NAME , VALUE ,SORTID ,COMMENTS as description , STATUS
+		,CREATEDATE , USERID,ICON iconCls   from SYSTEMDATA where dataCode =#{dataCode} and VALUE=#{value} and rownum =1
+	</select>
+
+</mapper>

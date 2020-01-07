@@ -67,7 +67,7 @@
 }
 
 .icon-system-view {
-	background: url('../images/icons/application_go.png ' ) no-repeat center
+	background: url('../images/icons/application_view_list.png' ) no-repeat center
 		center;
 }
 
@@ -125,7 +125,7 @@
 }
 
 .icon-circle-stop {
-	background: url('../images/icons/stop.gif') no-repeat center center;
+	background: url('../images/icons/stop.gif') no-repeat center ;
 }
 /*****************/
 .icon-menu-main{
@@ -142,7 +142,7 @@
 	background-image: url("../images/icons/cog.png");
 }
 .icon-menubutton-exit{
-	background-image: url("../images/icons/pause.gif");
+	background-image: url("../images/icons/pause.gif") center no-repeat ;
 }
 .icon-utils-s-setting{
 	background-image: url("../images/icons/cog_edit.png");

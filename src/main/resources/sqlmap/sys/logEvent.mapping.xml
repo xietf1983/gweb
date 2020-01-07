@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xtsoft.kernel.sys.entity.LogEventEntity">
+	<insert id="LogEventEntity_insert" parameterType="com.xtsoft.kernel.sys.entity.LogEventEntity">
+		insert into
+		LOGEVENT
+		(ID,USERID,USERACCOUNT,METHODS,OPERTIME,USERIP,CLASSNAME,EXCETPTION,DESCRIPTION,EXETIME,arguments,RETURNOBJECT,SUCESS)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{userId,jdbcType=NUMERIC},
+		#{userAccount,jdbcType=VARCHAR},
+		#{methods,jdbcType=VARCHAR},
+		#{operTime,jdbcType=TIMESTAMP},
+		#{userIP,jdbcType=VARCHAR},
+		#{className,jdbcType=VARCHAR},
+		#{excetption,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		#{exeTime,jdbcType=NUMERIC},
+		#{arguments,jdbcType=VARCHAR},
+		#{returnObject,jdbcType=VARCHAR},
+		#{sucess,jdbcType=NUMERIC}
+		)
+	</insert>
+
+	<delete id="LogEventEntity_delete" parameterType="com.xtsoft.kernel.sys.entity.LogEventEntity">
+		delete from
+		LOGEVENT
+		where
+		id=(#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<select id="findWithDynamicQuery_PageList_LogEventEntity"
+		parameterType="java.util.HashMap" resultType="com.xtsoft.kernel.sys.entity.LogEventEntity">
+		SELECT T.*
+		from (SELECT
+		ID,USERID,USERACCOUNT,METHODS,OPERTIME,USERIP,CLASSNAME,EXCETPTION,DESCRIPTION,EXETIME,arguments,RETURNOBJECT,SUCESS,ROWNUM
+		RN
+		FROM LOGEVENT w
+		<where>
+			<if test="STARTTIME != null">
+				<![CDATA[ and (OPERTIME >=to_date(#{STARTTIME},'yyyy-mm-dd hh24:mi:ss'))]]>
+			</if>
+			<if test="ENDTIME != null">
+				<![CDATA[and (OPERTIME <=to_date(#{ENDTIME},'yyyy-mm-dd hh24:mi:ss'))]]>
+			</if>
+			<if test="USER != null">
+				<![CDATA[ and (USERID =#{USER})]]>
+			</if>
+			<if test="SUCESS != null">
+				<![CDATA[ and (SUCESS =#{SUCESS})]]>
+			</if>
+			<if test="CONETENT != null and CONETENT.size()!=0 ">
+				and
+				<foreach collection="CONETENT" item="item" index="index"
+					open="(" close=")" separator=" or ">
+					DESCRIPTION =#{item}
+				</foreach>
+			</if>
+			<if test="USERID != null">
+				<![CDATA[ and (USERID =#{USERID})]]>
+			</if>
+			<if test="endRow != null">
+				<![CDATA[ and ROWNUM <= #{endRow} ]]>
+			</if>
+		</where>
+		)T
+		<where>
+			<if test="startRow != null">
+				<![CDATA[  RN > #{startRow} ]]>
+			</if>
+		</where>
+	</select>
+
+
+	<select id="findWithDynamicQuery_Count_LogEventEntity"
+		parameterType="java.util.HashMap" resultType="java.lang.Long">
+		SELECT count(USERID) as COUNTVALUE
+		FROM LOGEVENT w
+		<where>
+			<if test="STARTTIME != null">
+				<![CDATA[ and (OPERTIME >=to_date(#{STARTTIME},'yyyy-mm-dd hh24:mi:ss'))]]>
+			</if>
+			<if test="ENDTIME != null">
+				<![CDATA[ and (OPERTIME <=to_date(#{ENDTIME},'yyyy-mm-dd hh24:mi:ss'))]]>
+			</if>
+			<if test="USERID != null">
+				<![CDATA[ and (USERID =#{USERID})]]>
+			</if>
+			<if test="USER != null">
+				<![CDATA[ and (USERID =#{USER})]]>
+			</if>
+			<if test="SUCESS != null">
+				<![CDATA[ and (SUCESS =#{SUCESS})]]>
+			</if>
+			<if test="CONETENT != null and CONETENT.size()!=0 ">
+				and
+				<foreach collection="CONETENT" item="item" index="index"
+					open="(" close=")" separator=" or ">
+					DESCRIPTION =#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+</mapper>

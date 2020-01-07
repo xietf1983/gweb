@@ -1,6 +1,15 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/com/xtsoft/kernel/sys/service/impl/SystemDataEntityServiceImpl.java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/webapp/assets/css/beyond.css=UTF-8
+encoding//src/main/webapp/assets/css/beyond.min.css=UTF-8
+encoding//src/main/webapp/css/formeasyui.css=UTF-8
+encoding//src/main/webapp/css/index.css=UTF-8
+encoding//src/main/webapp/js/easyuiLocal.js=UTF-8
+encoding//src/main/webapp/pages/role/role_list.js=UTF-8
+encoding//src/main/webapp/ui/easyui/locale/easyui-lang-zh_CN.js=UTF-8
+encoding//src/main/webapp/ui/easyui/locale/easyui-lang-zh_TW.js=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

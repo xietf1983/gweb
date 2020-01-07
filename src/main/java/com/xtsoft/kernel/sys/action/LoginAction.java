@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,39 +102,38 @@ public class LoginAction extends BaseAction {
 
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
 	@ResponseBody
+	@RequiresAuthentication
 	public AjaxJsonResult index() {
 		AjaxJsonResult result = null;
 		try {
-			if (org.apache.shiro.SecurityUtils.getSubject().isAuthenticated()) {
-				Principal principal = SecurityUtilSimple.getPrincipal();
-				String id = principal.getId();
-				String userName = principal.getUsername();
-				// 获取我的菜单(一级菜单)
-				result = AjaxJsonResult.buildResultSuccess(MessageConstant.SUECESS);
-				if (principal.getRealname() != null && !principal.getRealname().equals("")) {
-					userName = principal.getRealname();
-				}
-				result.getExtend().put(WebConstant.WELCOME, userName);
-				List<String> typeList = new ArrayList();
-				typeList.add("1");
-				List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, DataBaseConstant.ROOTID, typeList);
-				result.getExtend().put(WebConstant.MENU, menuList);
-
-				// 获取默认首页
-				MenuEntity menu = MenuEntityServiceUtil.getService().findHomeMenuEntityByUserId(id);
-				if (menu == null) {
-					menu = new MenuEntity();
-					menu.setId("0");
-					menu.setUrl(WebConstant.WELCOME_PAGE_URL);
-					menu.setName(WebConstant.WELCOME_PAGE_NAME);
-					menu.setIsshow((short) 1);
-					menu.setMenuIcon(WebConstant.WELCOME_PAGE_ICON);
-				}
-				result.getExtend().put(WebConstant.HOMEPAGE, menu);
-
-			} else {
-				AjaxJsonResult.buildResultFail(MessageConstant.AUTHEN_ERROR);
+			// if
+			// (org.apache.shiro.SecurityUtils.getSubject().isAuthenticated()) {
+			Principal principal = SecurityUtilSimple.getPrincipal();
+			String id = principal.getId();
+			String userName = principal.getUsername();
+			// 获取我的菜单(一级菜单)
+			result = AjaxJsonResult.buildResultSuccess(MessageConstant.SUECESS);
+			if (principal.getRealname() != null && !principal.getRealname().equals("")) {
+				userName = principal.getRealname();
 			}
+			result.getExtend().put(WebConstant.WELCOME, userName);
+			List<String> typeList = new ArrayList();
+			typeList.add("1");
+			List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, DataBaseConstant.ROOTID, typeList);
+			result.getExtend().put(WebConstant.MENU, menuList);
+
+			// 获取默认首页
+			MenuEntity menu = MenuEntityServiceUtil.getService().findHomeMenuEntityByUserId(id);
+			if (menu == null) {
+				menu = new MenuEntity();
+				menu.setId("0");
+				menu.setUrl(WebConstant.WELCOME_PAGE_URL);
+				menu.setName(WebConstant.WELCOME_PAGE_NAME);
+				menu.setIsshow((short) 1);
+				menu.setMenuIcon(WebConstant.WELCOME_PAGE_ICON);
+			}
+			result.getExtend().put(WebConstant.HOMEPAGE, menu);
+
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
@@ -155,7 +155,7 @@ public class LoginAction extends BaseAction {
 			String id = principal.getId();
 			List<String> typeList = new ArrayList();
 			typeList.add("1");
-			List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, parentId,typeList);
+			List<MenuEntity> menuList = MenuEntityServiceUtil.getService().findMenuEntityByUserIdAndParentIdTree(id, parentId, typeList);
 			result = AjaxJsonResult.buildResultSuccess(MessageConstant.SUECESS);
 
 			result.getExtend().put(WebConstant.MENU, menuList);

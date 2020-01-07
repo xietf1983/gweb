@@ -12,7 +12,7 @@ import com.xtsoft.kernel.sys.entity.SystemDataEntity;
 @Repository("systemDataEntityPersistence")
 public class SystemDataEntityPersistence extends BasePersistence<SystemDataEntity> {
 	public List<SystemDataEntity> getSystemDataEntityList(String dataCode) {
-		ConditionFilter filter = new ConditionFilter("DATACODE", dataCode, "×Öµä±àÂë");
+		ConditionFilter filter = new ConditionFilter("DATACODE", dataCode, "å­—å…¸ç¼–ç ");
 		List<ConditionFilter> list = new ArrayList();
 		list.add(filter);
 		return findWithDynamicQuery(SystemDataEntity.FINDWITHDYNAMICQUERY_LIST + SystemDataEntity.class.getSimpleName(), list);

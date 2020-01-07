@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+<meta charset="utf-8" />
+<title>Dashboard</title>
+
+<meta name="description" content="Dashboard" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="assets/img/favicon.png"
+	type="image/x-icon">
+
+<!--Basic Styles-->
+<link href="ui/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="fonts/css/font-awesome.css" rel="stylesheet" />
+
+<!--Beyond styles-->
+<link href="assets/css/beyond.css" rel="stylesheet" type="text/css" />
+<link href="css/home.css" rel="stylesheet" type="text/css" />
+<link href="css/icon.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/demo.min.css" rel="stylesheet" />
+<link href="assets/css/typicons.min.css" rel="stylesheet" />
+<link href="assets/css/animate.min.css" rel="stylesheet" />
+<link href="../ui/easyui/themes/gray/easyui.css" rel="stylesheet">
+<link href="../css/easyui-main.css" rel="stylesheet">
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body style="display: none">
+	<!-- Loading Container -->
+	<div class="loading-container">
+		<div class="loader"></div>
+	</div>
+	<!--  /Loading Container -->
+	<!-- Navbar -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="navbar-container">
+				<!-- Navbar Barnd -->
+				<div class="navbar-header pull-left">
+					<a class="navbar-brand"> <small> <img
+							src="assets/img/logo.png" alt="" />
+					</small>
+					</a>
+				</div>
+
+				<!-- /Sidebar Collapse -->
+				<!-- Account Area and Settings --->
+				<div class="navbar-header pull-right">
+					<div class="navbar-account">
+						<ul class="account-area" style="border-left: 2px solid #5db2ff;">
+
+							<li><a class="login-area dropdown-toggle"
+								data-toggle="dropdown">
+									<section class="pull-right">
+										<span style="text-align: right;">谢腾飞</span>&nbsp;&nbsp;<b
+											class="caret"></b>
+									</section>
+							</a>
+								<ul class="pull-right dropdown-menu dropdown-login-area">
+									<li><a
+										style="background: url(images/icons/user.gif) no-repeat left center; padding-left: 30px;">
+											<span>我的设置</span>
+									</a></li>
+									<li><a
+										style="background: url(images/icons/lock.gif) no-repeat left center; padding-left: 30px;">
+											<span>修改密码</span>
+									</a></li>
+									<li><a
+										style="background: url(images/icons/pause.gif) no-repeat left center; padding-left: 30px;"><span
+											class="text">退出系统</span> </a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /Account Area and Settings -->
+			</div>
+		</div>
+	</div>
+	<!-- /Navbar -->
+	<!-- Main Container -->
+	<div class="main-container container-fluid">
+		<!-- Page Container -->
+		<div class="page-container">
+			<!-- Page Sidebar -->
+			<div class="page-sidebar" id="sidebar">
+				<div class="sidebar-header-wrapper" style="cursor: pointer">
+					<div class="searchinput icon-menu" id="menuheader">
+						<div class="icon icon-menu"></div>
+					</div>
+				</div>
+				<ul class="nav sidebar-menu" id="sidebarnav">
+
+				</ul>
+
+			</div>
+			<!-- /Page Sidebar -->
+			<!-- Page Content -->
+			<div class="page-content">
+
+				<!-- /Page Breadcrumb -->
+				<!-- Page Header -->
+				<div class="page-header position-relative">
+					<div class="header-title">
+						<i class="fa fa-th-large" style="font-size: 20px; color: #396389"></i>
+						<h1>HOME</h1>
+
+					</div>
+					<!--Header Buttons-->
+					<div class="header-buttons">
+						<a class="sidebar-toggler" href="javascript:void(0)"> <i
+							class="fa fa-arrows-h"></i>
+						</a>
+					</div>
+					<!--Header Buttons End-->
+				</div>
+				<!-- /Page Header -->
+				<!-- Page Body -->
+				<div class="page-body">
+					<div id="maindiv" style="display: none;">
+						<iframe id="mainframe" frameBorder="0" src=""
+							style="HEIGHT: 100%; WIDTH: 100%; Z-INDEX: 100; position: relative;"></iframe>
+					</div>
+				</div>
+				<!-- /Page Body -->
+			</div>
+			<!-- /Page Content -->
+		</div>
+		<!-- /Page Container -->
+		<!-- Main Container -->
+	</div>
+
+	<!--Basic Scripts-->
+	<script src="assets/js/jquery-2.0.3.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!--Beyond Scripts-->
+	<script src="assets/js/beyond2.js"></script>
+	<script src="index2.js"></script>
+	<!--Page Related Scripts-->
+	<!--Sparkline Charts Needed Scripts-->
+	<script src="assets/js/charts/sparkline/jquery.sparkline.js"></script>
+	<script src="assets/js/charts/sparkline/sparkline-init.js"></script>
+
+	<!--Easy Pie Charts Needed Scripts-->
+	<script src="assets/js/charts/easypiechart/jquery.easypiechart.js"></script>
+	<script src="assets/js/charts/easypiechart/easypiechart-init.js"></script>
+
+	<!--Flot Charts Needed Scripts-->
+	<script src="assets/js/charts/flot/jquery.flot.js"></script>
+	<script src="assets/js/charts/flot/jquery.flot.resize.js"></script>
+	<script src="assets/js/charts/flot/jquery.flot.pie.js"></script>
+	<script src="assets/js/charts/flot/jquery.flot.tooltip.js"></script>
+	<script src="assets/js/charts/flot/jquery.flot.orderBars.js"></script>
+
+	<script>
+		indexMenu();
+	</script>
+
+
+</body>
+<!--  /Body -->
+</html>

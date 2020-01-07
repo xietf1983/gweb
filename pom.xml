@@ -24,6 +24,9 @@
 		<commons-collections.version>3.2.2</commons-collections.version>
 		<commons-configuration2.version>2.5</commons-configuration2.version>
 		<commons-lang3.version>3.7</commons-lang3.version>
+		<commons-collections4.version>4.4</commons-collections4.version>
+		<commons-math3.version>3.6.1</commons-math3.version>
+		<commons-codec.version>1.13</commons-codec.version>
 		<log4j.version>1.2.17</log4j.version>
 		<org.slf4j.version>1.7.28</org.slf4j.version>
 		<quartz.version>2.3.0</quartz.version>
@@ -37,6 +40,10 @@
 		<jersey-common.version>2.29.1</jersey-common.version>
 		<jaxws-api.version>2.3.1</jaxws-api.version>
 		<javax.ws.rs-api.version>2.1.1</javax.ws.rs-api.version>
+		<jaxb-api.version>2.3.1</jaxb-api.version>
+		<jaxb-core.version>2.3.0.1</jaxb-core.version>
+		<jaxb-impl.version>2.3.2</jaxb-impl.version>
+		<poi.version>4.1.1</poi.version>
 	</properties>
 	<dependencies>
 		<!-- <dependency> <groupId>com.hazelcast</groupId> <artifactId>hazelcast</artifactId> 
@@ -395,8 +402,54 @@
 			</exclusions>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>${commons-math3.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- apache.commons end -->
 
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb-api.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>${jaxb-core.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>${jaxb-impl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<!-- apache.shiro start -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -423,6 +476,17 @@
 		</dependency>
 
 		<!-- CACHE end -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
@@ -502,6 +566,28 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${commons-collections4.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>${joda-time.version}</version>
@@ -553,11 +639,11 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-api</artifactId>
-    <version>${org.slf4j.version}</version>
-</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

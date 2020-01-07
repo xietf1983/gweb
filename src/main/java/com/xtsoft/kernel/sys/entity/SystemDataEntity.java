@@ -1,11 +1,7 @@
 package com.xtsoft.kernel.sys.entity;
 
-import java.lang.reflect.Field;
-import java.util.Date;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class SystemDataEntity extends DataEntity<SystemDataEntity> {
 	/**
@@ -18,6 +14,15 @@ public class SystemDataEntity extends DataEntity<SystemDataEntity> {
 	private long sortId;
 	private String name;
 	private String value;
+	private String iconCls;
+	public String getIconCls() {
+		return iconCls;
+	}
+
+	public void setIconCls(String iconCls) {
+		this.iconCls = iconCls;
+	}
+
 	private int status;
 	private String description;
 
