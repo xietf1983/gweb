@@ -22,7 +22,7 @@
 		<ehcache3.version>3.8.0</ehcache3.version>
 		<redis-clients.version>2.9.0</redis-clients.version>
 		<commons-collections.version>3.2.2</commons-collections.version>
-		<commons-configuration2.version>2.5</commons-configuration2.version>
+		<commons-configuration2.version>2.7</commons-configuration2.version>
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<commons-collections4.version>4.4</commons-collections4.version>
 		<commons-math3.version>3.6.1</commons-math3.version>
