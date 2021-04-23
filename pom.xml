@@ -37,7 +37,7 @@
 		<com.hazelcast.version>3.12.2</com.hazelcast.version>
 		<ojdbc6.version>11.2.0.3</ojdbc6.version>
 		<joda-time.version>2.10.3</joda-time.version>
-		<jersey-common.version>2.29.1</jersey-common.version>
+		<jersey-common.version>2.34</jersey-common.version>
 		<jaxws-api.version>2.3.1</jaxws-api.version>
 		<javax.ws.rs-api.version>2.1.1</javax.ws.rs-api.version>
 		<jaxb-api.version>2.3.1</jaxb-api.version>
