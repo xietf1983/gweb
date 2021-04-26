@@ -16,7 +16,7 @@
 		<fastjson.version>1.2.61</fastjson.version>
 		<fileupload.version>1.4</fileupload.version>
 		<shiro.version>1.4.1</shiro.version>
-		<commons-io.version>2.6</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<ehcache.version>2.10.5</ehcache.version>
 		<ehcache3.version>3.8.0</ehcache3.version>
