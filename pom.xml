@@ -9,7 +9,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<servlet-api.version>4.0.1</servlet-api.version>
-		<spring.version>5.1.9.RELEASE</spring.version>
+		<spring.version>5.2.22.RELEASE</spring.version>
 		<org.springframework.data.version>2.1.10.RELEASE</org.springframework.data.version>
 		<junit.version>4.12</junit.version>
 		<jackson.version>2.9.9</jackson.version>
