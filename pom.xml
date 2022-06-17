@@ -13,7 +13,7 @@
 		<org.springframework.data.version>2.1.10.RELEASE</org.springframework.data.version>
 		<junit.version>4.12</junit.version>
 		<jackson.version>2.9.9</jackson.version>
-		<fastjson.version>1.2.61</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<fileupload.version>1.4</fileupload.version>
 		<shiro.version>1.4.1</shiro.version>
 		<commons-io.version>2.6</commons-io.version>
